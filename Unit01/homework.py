@@ -1,4 +1,4 @@
-# yuanlin
+# yuanlin homework01
 import random
 
 while True:
