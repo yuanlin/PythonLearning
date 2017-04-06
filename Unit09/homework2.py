@@ -16,14 +16,19 @@ postData = {
 
 rs = requests.session()
 rs.post('https://www.ptt.cc/ask/over18', headers = headers, data=postData) # 處理八卦板確認年齡的頁面
-res = rs.get('https://www.ptt.cc/bbs/Gossiping/index.html', headers = headers)
-# print(res.text)
 
-soup = BeautifulSoup(res.text, 'html.parser')
+prePage = ''
+for i in range(0, 5):
+    print(str(i) + prePage + "------------------------------------------------")
+    if i == 0:
+        res = rs.get('https://www.ptt.cc/bbs/Gossiping/index.html', headers = headers)
+    else:
+        res = rs.get(prePage, headers = headers)
 
-# <div class="btn-group btn-group-paging">
-pages = soup.find('div', {'class': 'btn-group btn-group-paging'})
-# for page in pages.find_all('a'):
-#     print(page.get('href'))
-
-print(pttCrawler.getPrePageURL(soup))
+    soup = BeautifulSoup(res.text, 'html.parser')
+    post = soup.select('.r-ent')
+    for p in post:
+        if '(本文已被刪除)' not in p.select('.title')[0].text:
+            print(p.select('.title')[0].text + "-" + p.select('.author')[0].text)
+    prePage = pttCrawler.getPrePageURL(soup)
+        
