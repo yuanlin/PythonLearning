@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/styles/main.css">
+</head>
+
+<body>
+    <h1>Youtube Downloader Homework</h1>
+    <p>
+        測試用 youtube url https://www.youtube.com/watch?v=r5sA2JLvFPY <br> https://www.youtube.com/watch?v=xxOviBI-8fc
+    </p>
+    <form action="/submit" method="POST">
+        <p>
+            <label for="">輸入網址1：</label><input type="" name="url0" value="">
+        </p>
+        <p>
+            <label for="">輸入網址2：</label><input type="" name="url1" value="">
+            <p>
+                <button type="submit">送出</button>
+    </form>
+    {% if result %}
+    <span>
+        {{ result }} <br/>
+        下載完成
+    </span>
+    {% endif %}
+</body>
+
+</html>
